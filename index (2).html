@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tips & Tales — My Nail Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBF8FB;
+    --bg-soft: #F3EBF4;
+    --card: #FFFFFF;
+    --ink: #362A3E;
+    --ink-dim: #7C6D85;
+    --lilac: #B49BCC;
+    --lilac-deep: #8F6FAE;
+    --sage: #93AD86;
+    --mauve: #C99BA8;
+    --gold: #CBA24E;
+    --line: rgba(54,42,62,0.12);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- Swatch strip (top nav) ---------- */
+  .swatch-strip{
+    display:flex;
+    height:10px;
+    width:100%;
+  }
+  .swatch-strip span{ flex:1; }
+  .swatch-strip .s1{ background:var(--lilac); }
+  .swatch-strip .s2{ background:var(--sage); }
+  .swatch-strip .s3{ background:var(--mauve); }
+  .swatch-strip .s4{ background:var(--gold); }
+
+  header{
+    padding: 28px 6vw 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .brand{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    letter-spacing:0.01em;
+    color:var(--lilac-deep);
+  }
+
+  nav{
+    display:flex;
+    gap:28px;
+    font-size:0.92rem;
+    color:var(--ink-dim);
+  }
+  nav a{ text-decoration:none; transition:color 0.2s ease; }
+  nav a:hover, nav a:focus-visible{ color:var(--lilac-deep); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 70px 6vw 60px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(2.6rem, 5.2vw, 4.4rem);
+    line-height:1.05;
+    max-width:11ch;
+    color:var(--ink);
+  }
+
+  .hero p{
+    margin-top:22px;
+    max-width:42ch;
+    color:var(--ink-dim);
+    font-size:1.05rem;
+  }
+
+  .hero-meta{
+    margin-top:32px;
+    display:flex;
+    gap:32px;
+  }
+  .hero-meta div{ font-size:0.85rem; color:var(--ink-dim); }
+  .hero-meta strong{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.9rem;
+    color:var(--lilac-deep);
+    font-weight:500;
+  }
+
+  /* Hero visual: a "palette" of polish bottle caps, softened */
+  .palette{
+    position:relative;
+    height:340px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:18px;
+  }
+  .bottle{
+    width:54px;
+    border-radius:16px 16px 6px 6px;
+    position:relative;
+    box-shadow: 0 18px 30px -14px rgba(54,42,62,0.35);
+  }
+  .bottle::before{
+    content:"";
+    position:absolute;
+    top:-22px; left:50%;
+    transform:translateX(-50%);
+    width:20px; height:26px;
+    background:#E7DCEC;
+    border:1px solid var(--line);
+    border-radius:8px 8px 3px 3px;
+  }
+  .bottle.b1{ height:210px; background:linear-gradient(180deg, #D7C2E6, var(--lilac)); }
+  .bottle.b2{ height:270px; background:linear-gradient(180deg, #E6D2A0, var(--gold)); }
+  .bottle.b3{ height:180px; background:linear-gradient(180deg, #C3D6B4, var(--sage)); }
+  .bottle.b4{ height:240px; background:linear-gradient(180deg, #E2BFC9, var(--mauve)); }
+  .bottle.b5{ height:150px; background:linear-gradient(180deg, #FFFFFF, #E7DCEC); }
+
+  /* ---------- Section labels ---------- */
+  .section-intro{
+    padding: 10px 6vw 36px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:14px;
+    border-top:1px solid var(--line);
+    margin-top:10px;
+  }
+  .section-intro h2{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.9rem;
+    padding-top:36px;
+    color:var(--ink);
+  }
+  .section-intro p{
+    color:var(--ink-dim);
+    max-width:36ch;
+    font-size:0.95rem;
+    padding-top:36px;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery{
+    padding: 0 6vw 90px;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 10px;
+    gap:22px;
+  }
+
+  .piece{
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .piece:hover, .piece:focus-within{
+    transform:translateY(-4px);
+    box-shadow: 0 20px 34px -20px rgba(54,42,62,0.28);
+  }
+
+  .swatch{
+    flex:1;
+    min-height:130px;
+    position:relative;
+  }
+  /* placeholder textures standing in for real nail photos */
+  .swatch.p1{ background: radial-gradient(circle at 30% 25%, #E4D2EE, var(--lilac) 75%); }
+  .swatch.p2{ background: radial-gradient(circle at 70% 30%, #F0E0B4, var(--gold) 75%); }
+  .swatch.p3{ background: radial-gradient(circle at 40% 70%, #D6E3CB, var(--sage) 75%); }
+  .swatch.p4{ background: radial-gradient(circle at 60% 40%, #EDD3DA, var(--mauve) 75%); }
+  .swatch.p5{ background: linear-gradient(135deg, var(--lilac), var(--gold)); }
+  .swatch.p6{ background: linear-gradient(135deg, var(--sage), #A9C7C0); }
+  .swatch.p7{ background: linear-gradient(135deg, var(--mauve), var(--lilac)); }
+  .swatch.p8{ background: linear-gradient(135deg, var(--gold), var(--sage)); }
+
+  .swatch::after{
+    content: attr(data-hint);
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:12px;
+    font-size:0.75rem;
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    opacity:0;
+    transition:opacity 0.2s ease;
+    background:rgba(255,255,255,0.55);
+  }
+  .piece:hover .swatch::after{ opacity:1; }
+
+  .piece-info{
+    padding:16px 18px 20px;
+  }
+  .piece-info h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    color:var(--ink);
+  }
+  .piece-info p{
+    margin-top:6px;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+  }
+  .piece-info .tags{
+    margin-top:10px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-size:0.72rem;
+    color:var(--lilac-deep);
+    background:var(--bg-soft);
+    border-radius:100px;
+    padding:3px 10px;
+  }
+
+  /* sizing variety within the grid so it doesn't feel like uniform cards */
+  .piece.tall{ grid-row: span 34; }
+  .piece.mid{ grid-row: span 30; }
+  .piece.short{ grid-row: span 27; }
+
+  @media (max-width: 980px){
+    .gallery{ grid-template-columns: repeat(2, 1fr); }
+    .hero{ grid-template-columns: 1fr; }
+    .palette{ height:220px; }
+  }
+
+  @media (max-width: 560px){
+    .gallery{ grid-template-columns: 1fr; }
+    header{ padding:24px 6vw 0; }
+    nav{ gap:18px; }
+  }
+
+  /* ---------- Booking ---------- */
+  .book{
+    padding: 60px 6vw 70px;
+    border-top:1px solid var(--line);
+    background:var(--bg-soft);
+  }
+  .book-inner{ max-width:640px; }
+  .book h2{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:2rem;
+    color:var(--ink);
+  }
+  .book p{
+    margin-top:12px;
+    color:var(--ink-dim);
+    max-width:48ch;
+  }
+  .book-links{
+    margin-top:26px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .book-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:0.92rem;
+    padding:12px 20px;
+    border-radius:100px;
+    background:var(--card);
+    border:1px solid var(--line);
+    transition:box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .book-link:hover, .book-link:focus-visible{
+    box-shadow: 0 12px 22px -14px rgba(54,42,62,0.3);
+    transform:translateY(-2px);
+  }
+  .book-link .dot{
+    width:8px; height:8px;
+    border-radius:50%;
+  }
+  .book-link.ig .dot{ background:var(--mauve); }
+  .book-link.wa .dot{ background:var(--sage); }
+
+  /* ---------- About / footer ---------- */
+  .about{
+    padding: 70px 6vw 90px;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:48px;
+  }
+  .about h2{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:2rem;
+    max-width:10ch;
+    color:var(--ink);
+  }
+  .about p{
+    color:var(--ink-dim);
+    max-width:52ch;
+  }
+  .about p + p{ margin-top:14px; }
+
+  @media (max-width: 800px){
+    .about{ grid-template-columns:1fr; }
+  }
+
+  footer{
+    padding: 26px 6vw 40px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:var(--ink-dim);
+    font-size:0.82rem;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--lilac-deep);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="swatch-strip">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+  </div>
+
+  <header>
+    <div class="brand">Tips & Tales</div>
+    <nav>
+      <a href="#gallery">Collection</a>
+      <a href="#book">Book</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>A shelf of every set I've done</h1>
+      <p>A running collection of nail looks — colors, finishes, and the little details behind each one. New sets added as they're finished.</p>
+      <div class="hero-meta">
+        <div><strong>8</strong>sets so far</div>
+        <div><strong>4</strong>go-to finishes</div>
+        <div><strong>2026</strong>started this shelf</div>
+      </div>
+    </div>
+    <div class="palette" aria-hidden="true">
+      <div class="bottle b1"></div>
+      <div class="bottle b2"></div>
+      <div class="bottle b3"></div>
+      <div class="bottle b4"></div>
+      <div class="bottle b5"></div>
+    </div>
+  </section>
+
+  <div class="section-intro" id="gallery">
+    <h2>The collection</h2>
+    <p>Hover a swatch for the placeholder note — swap in your own photos here.</p>
+  </div>
+
+  <section class="gallery">
+    <article class="piece tall">
+      <div class="swatch p1" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Lilac Chrome</h3>
+        <p>Almond shape, chrome topcoat over a soft lilac base.</p>
+        <div class="tags"><span class="tag">Chrome</span><span class="tag">Almond</span></div>
+      </div>
+    </article>
+
+    <article class="piece mid">
+      <div class="swatch p2" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Golden Hour</h3>
+        <p>Warm gold gel with a fine glitter fade at the tips.</p>
+        <div class="tags"><span class="tag">Gel</span><span class="tag">Ombré</span></div>
+      </div>
+    </article>
+
+    <article class="piece short">
+      <div class="swatch p3" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Sage Minimal</h3>
+        <p>Short square set, matte sage with one accent nail.</p>
+        <div class="tags"><span class="tag">Matte</span><span class="tag">Square</span></div>
+      </div>
+    </article>
+
+    <article class="piece mid">
+      <div class="swatch p4" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Mauve Swirl</h3>
+        <p>Hand-painted swirl detail over a dusty mauve base coat.</p>
+        <div class="tags"><span class="tag">Hand-painted</span><span class="tag">Coffin</span></div>
+      </div>
+    </article>
+
+    <article class="piece short">
+      <div class="swatch p5" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Lilac Fade</h3>
+        <p>Lilac-to-gold gradient, glossy finish.</p>
+        <div class="tags"><span class="tag">Gradient</span><span class="tag">Gloss</span></div>
+      </div>
+    </article>
+
+    <article class="piece tall">
+      <div class="swatch p6" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Sea Glass</h3>
+        <p>Sage and soft teal marble effect, medium almond length.</p>
+        <div class="tags"><span class="tag">Marble</span><span class="tag">Almond</span></div>
+      </div>
+    </article>
+
+    <article class="piece mid">
+      <div class="swatch p7" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Mauve & Lilac</h3>
+        <p>Two-tone set alternating mauve and soft lilac.</p>
+        <div class="tags"><span class="tag">Two-tone</span><span class="tag">Square</span></div>
+      </div>
+    </article>
+
+    <article class="piece short">
+      <div class="swatch p8" data-hint="Replace with photo"></div>
+      <div class="piece-info">
+        <h3>Gilded Sage</h3>
+        <p>Sage base with fine gold foil accents.</p>
+        <div class="tags"><span class="tag">Foil</span><span class="tag">Short</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="book" id="book">
+    <div class="book-inner">
+      <h2>Book a set</h2>
+      <p>Slide into my DMs or send a message — tell me the design, shape, and a date that works for you.</p>
+      <div class="book-links">
+        <a class="book-link ig" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">
+          <span class="dot"></span>Message on Instagram
+        </a>
+        <a class="book-link wa" href="https://wa.me/8800000000" target="_blank" rel="noopener">
+          <span class="dot"></span>Message on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About this shelf</h2>
+    <div>
+      <p>This is where I keep track of the nail sets I've done — a mix of colors I keep coming back to and new things I'm trying out.</p>
+      <p>Add your own story here: how you got into it, your favorite techniques, or what people can expect if this becomes a booking page down the line.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Tips & Tales</span>
+    <span>A new tale, one set at a time</span>
+  </footer>
+
+</body>
+</html>
